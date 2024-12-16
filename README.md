@@ -44,7 +44,7 @@ Confusion Matrix:
 
 
 3.Observations
-- The model performed well on classes like sad and Neutral but struggles with some features.
+- The model performed well on classes like sad and happy but struggles with some features like disgust and fear.
 - Misclassifications often occurred in images with poor lighting.
 
 Challenges
