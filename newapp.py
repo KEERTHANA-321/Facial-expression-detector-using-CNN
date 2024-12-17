@@ -18,7 +18,7 @@ def preprocess_image(image):
 
 #App UI
 st.set_page_config(page_title="Facial Expression Detection App",layout="centered")
-st.title("Facial Expression App")
+st.title("Facial Expression Detection App")
 st.write("Upload an image or use your webcam to detect emotions in faces. The app predicts one of the following emotions:")
 st.markdown("**Angry**, **Disgust**, **Fear**, **Happy**, **Sad**, **Surprise**, **Neutral**")
 
