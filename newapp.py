@@ -46,12 +46,12 @@ if uploaded_file is not None:
     st.success(f"**Predicted Emotion: {emotion}**")
 elif webcam_input:
     
-    webcam_image=np.array(Image.open(webcam_input))
-    st.image(webcam_image, caption="Captured Image", use_column_width=True)
+    webcam=np.array(Image.open(webcam))
+    st.image(webcam,caption="Captured Image",use_container_width=True)
     #Preprocessing
-    input_image=preprocess_image(frame)
+    input_image=preprocess_image(webcame)
     #prediction
-    predictions=model.predict(webcam_image)
+    predictions=model.predict(input_image)
     predicted_class=np.argmax(predictions)
     emotion=emotion_labels[predicted_class]
     st.success(f"**Predicted Emotion: {emotion}**")
