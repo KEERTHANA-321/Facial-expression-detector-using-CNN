@@ -31,7 +31,7 @@ st.subheader("Upload an Image")
 uploaded_file=st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 #Webcam
 st.subheader("Use Your Webcam")
-use_webcam=st.button("Capture")
+webcam_input=st.camera_input("Capture an image with your webcam")
 
 if uploaded_file is not None:
     image=np.array(Image.open(uploaded_file))
@@ -44,18 +44,19 @@ if uploaded_file is not None:
     emotion=emotion_labels[predicted_class]
   
     st.success(f"**Predicted Emotion: {emotion}**")
-elif use_webcam:
+elif webcam_input:
     st.write("Opening your webcam...")
     capture=cv2.VideoCapture(0)
     
     if capture.isOpened():
         ret, frame = capture.read()
         if ret:
-            st.image(frame, caption="Captured Frame",use_container_width=True)
+            webcam_image=np.array(Image.open(webcam_input))
+            st.image(webcam_image, caption="Captured Image", use_column_width=True)
             #Preprocessing
             input_image=preprocess_image(frame)
             #prediction
-            predictions=model.predict(input_image)
+            predictions=model.predict(webcam_image)
             predicted_class=np.argmax(predictions)
             emotion=emotion_labels[predicted_class]
             st.success(f"**Predicted Emotion: {emotion}**")
