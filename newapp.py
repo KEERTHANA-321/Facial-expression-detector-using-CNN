@@ -49,7 +49,7 @@ elif webcam_input:
     webcam=np.array(Image.open(webcam_input))
     st.image(webcam,caption="Captured Image",use_container_width=True)
     #Preprocessing
-    input_image=preprocess_image(webcame)
+    input_image=preprocess_image(webcam)
     #prediction
     predictions=model.predict(input_image)
     predicted_class=np.argmax(predictions)
