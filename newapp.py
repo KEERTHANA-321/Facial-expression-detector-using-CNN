@@ -46,7 +46,7 @@ if uploaded_file is not None:
     st.success(f"**Predicted Emotion: {emotion}**")
 elif webcam_input:
     
-    webcam=np.array(Image.open(webcam))
+    webcam=np.array(Image.open(webcam_input))
     st.image(webcam,caption="Captured Image",use_container_width=True)
     #Preprocessing
     input_image=preprocess_image(webcame)
