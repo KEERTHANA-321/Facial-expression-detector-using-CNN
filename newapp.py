@@ -26,32 +26,35 @@ st.markdown("**Angry**, **Disgust**, **Fear**, **Happy**, **Sad**, **Surprise**,
 st.sidebar.header("Instructions")
 st.sidebar.write("1. Upload an image with a visible face or capture using the webcam.\n"
                  "2. The app will display the detected emotion.")
+st.subheader("Choose an Option")
+option=st.radio("How would you like to provide an image?", ("Upload an Image", "Use Webcam"))
 #File Uploader
-st.subheader("Upload an Image")
-uploaded_file=st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-#Webcam
-st.subheader("Use Your Webcam")
-webcam_input=st.camera_input("Capture an image with your webcam")
-
-if uploaded_file is not None:
-    image=np.array(Image.open(uploaded_file))
-    st.image(image,caption="Uploaded Image", use_container_width=True)
-    #Preprocessingg the image
-    input_image=preprocess_image(image)
-    #prediction
-    predictions=model.predict(input_image)
-    predicted_class=np.argmax(predictions)
-    emotion=emotion_labels[predicted_class]
+if option=="Upload an Image":
+    st.subheader("Upload an Image")
+    uploaded_file=st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        image=np.array(Image.open(uploaded_file))
+        st.image(image,caption="Uploaded Image", use_container_width=True)
+        #Preprocessingg the image
+        input_image=preprocess_image(image)
+        #prediction
+        predictions=model.predict(input_image)
+        predicted_class=np.argmax(predictions)
+        emotion=emotion_labels[predicted_class]
   
-    st.success(f"**Predicted Emotion: {emotion}**")
-elif webcam_input:
-    
-    webcam=np.array(Image.open(webcam_input))
-    st.image(webcam,caption="Captured Image",use_container_width=True)
-    #Preprocessing
-    input_image=preprocess_image(webcam)
-    #prediction
-    predictions=model.predict(input_image)
-    predicted_class=np.argmax(predictions)
-    emotion=emotion_labels[predicted_class]
-    st.success(f"**Predicted Emotion: {emotion}**")
+        st.success(f"**Predicted Emotion: {emotion}**")
+
+
+elif option == "Use Webcam":
+    st.subheader("Use Your Webcam")
+    webcam_input=st.camera_input("Capture an image with your webcam")
+    if webcam_input is not None:
+        webcam=np.array(Image.open(webcam_input))
+        st.image(webcam,caption="Captured Image",use_container_width=True)
+        #Preprocessing
+        input_image=preprocess_image(webcam)
+        #prediction
+        predictions=model.predict(input_image)
+        predicted_class=np.argmax(predictions)
+        emotion=emotion_labels[predicted_class]
+        st.success(f"**Predicted Emotion: {emotion}**")
