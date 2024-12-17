@@ -9,14 +9,15 @@ activities
 
 Approach
 1.Data Preprocessing
--Dataset:Used the FER 2013 dataset consisting of grayscale facial images resized to 48x48 pixels.
--Data Augmentation:Applied rescaling to normalize pixel values between 0 and 1.
+-Dataset:https://www.kaggle.com/datasets/msambare/fer2013
+Used the FER 2013 dataset consisting of grayscale facial images resized to 48x48 pixels.
+-Applied rescaling to normalize pixel values between 0 and 1.
 
 2.Model Architecture
 -Convolutional Layers: 
   - Used multiple Conv2D layers for feature extraction.
-  - Employed ReLU activation for non-linearity.
-  - Incorporated MaxPooling to downsample feature maps and reduce dimensionality.
+  - ReLU activation for non-linearity.
+  - Maxpooling to reduce dimensions and overfitting.
 - Fully Connected Layers:
   - Flattened extracted features into a dense representation.
   - Added Dropout to reduce overfitting.
