@@ -45,23 +45,13 @@ if uploaded_file is not None:
   
     st.success(f"**Predicted Emotion: {emotion}**")
 elif webcam_input:
-    st.write("Opening your webcam...")
-    capture=cv2.VideoCapture(0)
     
-    if capture.isOpened():
-        ret, frame = capture.read()
-        if ret:
-            webcam_image=np.array(Image.open(webcam_input))
-            st.image(webcam_image, caption="Captured Image", use_column_width=True)
-            #Preprocessing
-            input_image=preprocess_image(frame)
-            #prediction
-            predictions=model.predict(webcam_image)
-            predicted_class=np.argmax(predictions)
-            emotion=emotion_labels[predicted_class]
-            st.success(f"**Predicted Emotion: {emotion}**")
-        else:
-            st.error("Unable to capture an image from the webcam.")
-        capture.release()
-    else:
-        st.error("Could not open the webcam. Ensure it's properly connected.")
+    webcam_image=np.array(Image.open(webcam_input))
+    st.image(webcam_image, caption="Captured Image", use_column_width=True)
+    #Preprocessing
+    input_image=preprocess_image(frame)
+    #prediction
+    predictions=model.predict(webcam_image)
+    predicted_class=np.argmax(predictions)
+    emotion=emotion_labels[predicted_class]
+    st.success(f"**Predicted Emotion: {emotion}**")
