@@ -1,4 +1,5 @@
 Facial Expression Recognition Using CNN
+web app link:https://facial-expression-detector-using-cnn-ug2drjaobs7zvfneiiaytg.streamlit.app/
 
 Problem Statement
 The objective of this project is to develop a deep learning model that can classify facial expressions into 
@@ -21,11 +22,9 @@ Used the FER 2013 dataset consisting of grayscale facial images resized to 48x48
 - Fully Connected Layers:
   - Flattened extracted features into a dense representation.
   - Added Dropout to reduce overfitting.
-  - Output layer with a `softmax` activation to classify into 7 emotion categories.
+  - Output layer  to classify into 7 emotion categories.
   
 3.Training
-- Loss Function:Categorical Crossentropy.
-- Optimizer:Adam Optimizer with a learning rate of 0.0001.
 - Evaluation Metric:Accuracy and f1 scores.
 - Training Epochs:Trained for 50 epochs on the FER 2013 dataset.
 
