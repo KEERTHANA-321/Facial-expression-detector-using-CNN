@@ -13,10 +13,15 @@ def preprocess_image(image):
         img_array = image
     else:
         img_array = np.array(image)
-    if(image.shape==2):
-        gray=image
+   if len(img_array.shape) == 2:
+        gray = img_array
+    elif len(img_array.shape) == 3: 
+        if img_array.shape[2] == 3: 
+            gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY) 
+        else:
+            raise ValueError("Unexpected image format! Image must be 1 or 3 channels.")
     else:
-        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        raise ValueError("Unexpected image format! Image must be 2D (grayscale) or 3D (RGB/BGR).")
     resized=cv2.resize(gray,(48,48))
     normalized=resized/255.0
     input=np.expand_dims(normalized,axis=0)
