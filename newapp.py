@@ -9,7 +9,10 @@ emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutr
 model = load_model('emotion_model.h5')
 
 def preprocess_image(image):
-    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    if(image.shape==2) 
+        gray=image
+    else:
+        gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     resized=cv2.resize(gray,(48,48))
     normalized=resized/255.0
     input=np.expand_dims(normalized,axis=0)
