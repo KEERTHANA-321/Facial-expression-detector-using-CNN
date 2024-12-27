@@ -13,7 +13,7 @@ def preprocess_image(image):
         img_array = image
     else:
         img_array = np.array(image)
-   if len(img_array.shape) == 2:
+    if len(img_array.shape) == 2:
         gray = img_array
     elif len(img_array.shape) == 3: 
         if img_array.shape[2] == 3: 
